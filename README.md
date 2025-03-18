@@ -1,5 +1,3 @@
-<p><img src="https://franciscohodge.com/project-pages/simple-keyboard/images/vue.png" width="60" align="center" /></p>
-<a href="https://simple-keyboard.com/demo" title="View Demo" target="_blank"><img src="https://franciscohodge.com/project-pages/simple-keyboard/images/simplekeyboard-banner3x.png" align="center" width="100%"></a>
 
   <p>
   <blockquote><strong>This is a repository for simple-keyboard's Vue.js demos</strong> <br /> https://virtual-keyboard.js.org/vuejs</blockquote>
@@ -36,10 +34,6 @@ Feel free to browse the [Q&A / Use-cases](https://simple-keyboard.com/qa-use-cas
 * [React.js](https://virtual-keyboard.js.org/react)
 * [Angular](https://virtual-keyboard.js.org/angular)
 * [Vue.js](https://virtual-keyboard.js.org/vuejs)
-
-### Questions?
-
-<a href="http://franciscohodge.com/simple-keyboard/chat/join" title="Join our Discord chat" target="_blank"><img src="https://franciscohodge.com/project-pages/simple-keyboard/images/discord.png" align="center" width="200"></a>
 
 ## ✅ Contributing
 

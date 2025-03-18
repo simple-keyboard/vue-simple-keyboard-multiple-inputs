@@ -3,71 +3,81 @@
 </template>
 
 <script>
-import Keyboard from "simple-keyboard";
-import "simple-keyboard/build/css/index.css";
+import Keyboard from 'simple-keyboard';
+import 'simple-keyboard/build/css/index.css';
 
 export default {
-  name: "SimpleKeyboard",
+  name: 'SimpleKeyboard',
   props: {
     keyboardClass: {
-      default: "simple-keyboard",
-      type: String
+      default: 'simple-keyboard',
+      type: String,
     },
-    input: {
-      type: String
+    inputs: {
+      type: Object,
     },
     inputName: {
-      type: String
-    }
+      type: String,
+    },
   },
   data: () => ({
-    keyboard: null
+    keyboard: null,
   }),
   mounted() {
     this.keyboard = new Keyboard({
       onChange: this.onChange,
       onKeyPress: this.onKeyPress,
-      inputName: this.inputName
+      inputName: this.inputName,
+      /*debug: true,
+      onRender: (keyboard) => {
+        console.log('Keyboard rendered', keyboard.input);
+      },*/
     });
   },
   methods: {
     onChange(input) {
-      this.$emit("onChange", input);
+      this.$emit('onChange', input);
     },
     onKeyPress(button) {
-      this.$emit("onKeyPress", button);
+      this.$emit('onKeyPress', button);
 
       /**
        * If you want to handle the shift and caps lock buttons
        */
-      if (button === "{shift}" || button === "{lock}") this.handleShift();
+      if (button === '{shift}' || button === '{lock}') this.handleShift();
     },
     handleShift() {
       let currentLayout = this.keyboard.options.layoutName;
-      let shiftToggle = currentLayout === "default" ? "shift" : "default";
+      let shiftToggle = currentLayout === 'default' ? 'shift' : 'default';
 
       this.keyboard.setOptions({
-        layoutName: shiftToggle
+        layoutName: shiftToggle,
       });
-    }
+    },
   },
   watch: {
     inputName(inputName) {
-      console.log("SimpleKeyboard: inputName updated", inputName);
+      console.log(
+        'SimpleKeyboard: inputName updated',
+        inputName,
+        this.inputs[inputName]
+      );
       this.keyboard.setOptions({ inputName });
     },
-    input(input) {
-      console.log(
-        "SimpleKeyboard: input Updated",
-        this.keyboard.options.inputName,
-        input
-      );
-      this.keyboard.setInput(input);
-    }
-  }
+    inputs: {
+      handler(inputs) {
+        console.log(
+          'SimpleKeyboard: input Updated',
+          this.keyboard.options.inputName,
+          inputs
+        );
+        this.keyboard.replaceInput(inputs);
+      },
+      deep: true,
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>
